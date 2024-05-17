@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [theme, setTheme] = useState("light");
 
-   useEffect(() => {
-    localStorage.setItem('theme', theme)
-    const localTheme = localStorage.getItem('theme')
-    document.querySelector('html').setAttribute('data-theme', localTheme)
-   },[theme]) 
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
   const handleToggle = (e) => {
     if (e.target.checked) {
@@ -16,27 +17,44 @@ const Nav = () => {
       setTheme("light");
     }
   };
-  console.log(theme);
 
   return (
-    <div className="shadow-lg px-4 fixed z-10 w-full">
+    <div className="shadow-lg px-4 sm:px-8 fixed z-10 w-full">
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost gap-0 normal-case text-3xl text-secondary">
+          <Link
+            to="/"
+            className="btn btn-ghost gap-0 normal-case text-3xl text-secondary"
+          >
             Byte<span className="text-primary">Blaze</span>
-          </a>
+          </Link>
         </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li className="font-bold text-primary">
-              <a>Home</a>
-            </li>
-            <li className="font-bold">
-              <a>Blogs</a>
-            </li>
-            <li className="font-bold">
-              <a>Bookmarks</a>
-            </li>
+        <div className="flex-none gap-3">
+          <ul className="menu menu-horizontal px-1 hidden sm:flex gap-3">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-primary" : "font-bold"
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-primary" : "font-bold"
+              }
+            >
+              Blogs
+            </NavLink>
+            <NavLink
+              to="/bookmarks"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-primary" : "font-bold"
+              }
+            >
+              Bookmarks
+            </NavLink>
           </ul>
           <label className="cursor-pointer grid place-items-center">
             <input
