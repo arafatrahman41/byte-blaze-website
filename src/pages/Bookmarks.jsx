@@ -13,7 +13,6 @@ const Bookmarks = () => {
   const handleDelete = (id) => {
     deleteBlog(id);
     const storedBlogs = getBlogs();
-    console.log(storedBlogs);
     setBlogs(storedBlogs);
   };
 

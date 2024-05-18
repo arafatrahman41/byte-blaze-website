@@ -5,8 +5,7 @@ import { MdDeleteForever } from "react-icons/md";
  
 
 const BlogCard = ({blog, deletable, handleDelete}) => {
-    const {title, description, cover_image,published_at, id } = blog
-    console.log(blog);
+    const {title, description, cover_image,published_at, id } = blog;
     
     return (
         <div className='flex relative'>
