@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Link, Outlet, useLoaderData} from "react-router-dom";
 
 const Blog = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
   const blog = useLoaderData();
+  
+
   const {
     comments_count,
     title,
     reading_time_minutes,
     public_reactions_count,
-    published_at,
-    tags
+    published_at
   } = blog;
+
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
       <article className="space-y-8 dark:bg-gray-100 dark:text-gray-900">
@@ -30,8 +32,12 @@ const Blog = () => {
           </div>
           {/* Tabs */}
           <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap dark:bg-gray-100 dark:text-gray-800">
-            <Link to = '' onClick={() => setTabIndex(0)}
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex === 0 ? 'border border-b-0': 'border-b'} rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+            <Link
+              to=""
+              onClick={() => setTabIndex(0)}
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
+                tabIndex === 0 ? "border border-b-0" : "border-b"
+              } rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,8 +53,12 @@ const Blog = () => {
               </svg>
               <span>Content</span>
             </Link>
-            <Link to={`author`} onClick={() => setTabIndex(1)}
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${tabIndex === 1 ? 'border border-b-0': 'border-b'} rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
+            <Link
+              to={`author`}
+              onClick={() => setTabIndex(1)}
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
+                tabIndex === 1 ? "border border-b-0" : "border-b"
+              } rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -69,19 +79,6 @@ const Blog = () => {
         </div>
         <Outlet />
       </article>
-      <div>
-        <div className="flex flex-wrap py-6 gap-2 border-t border-dashed dark:border-gray-600">
-         {
-            tags.map(tag =>  <a key={tag}
-                rel="noopener noreferrer"
-                href="#"
-                className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-600 dark:text-gray-50"
-              >
-               #{tag}
-              </a>)
-         }
-        </div>
-      </div>
     </div>
   );
 };
