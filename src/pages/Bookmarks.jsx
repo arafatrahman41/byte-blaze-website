@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteBlog, getBlogs } from "../utils";
 import BlogCard from "../components/BlogCard";
 import EmptyState from "../components/EmptyState";
 
 const Bookmarks = () => {
   const [blogs, setBlogs] = useState([]);
-  useState(() => {
+  useEffect(() => {
     const storedBlogs = getBlogs();
     setBlogs(storedBlogs);
   }, []);
@@ -13,6 +13,7 @@ const Bookmarks = () => {
   const handleDelete = (id) => {
     deleteBlog(id);
     const storedBlogs = getBlogs();
+    console.log(storedBlogs);
     setBlogs(storedBlogs);
   };
 
